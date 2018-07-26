@@ -62,7 +62,7 @@ public class clockTime {
                     }
                 }
             }
-            endTime = timeForHrsMin + ":" + timeForMin;
+            endTime = timeForHrsMin + ":" + digits[3] + digits[3];
         }
         return endTime;
     }
