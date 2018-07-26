@@ -13,6 +13,7 @@ public class clockTime {
         System.out.println("13:00 -> " + getTime("13:00"));
         System.out.println("24:59 -> " + getTime("24:59"));
         System.out.println("21:00 -> " + getTime("21:00"));
+        System.out.println("20:00 -> " + getTime("00:00"));
     }
 
     public static String getTime(String time) {
@@ -50,11 +51,17 @@ public class clockTime {
             int minHrsDistance = 25;
             String timeForHrsMin = splitTime[0];
             int tempHrs = 0;
+            String maxMins = "00";
+            int found = 0;
 
             for (int i = 3; i >= 0; i--) {
                 for (int j = 3; j >= 0; j--) {
                     hours = digits[i] + digits[j];
                     tempHrs = Integer.parseInt(splitTime[0]) - Integer.parseInt(hours);
+                    if (Integer.parseInt(hours) <= 60 && found == 0) {
+                        found++;
+                        maxMins = hours;
+                    }
 
                     if (tempHrs < minHrsDistance && tempHrs > 0) {
                         minHrsDistance = Integer.parseInt(splitTime[0]) - Integer.parseInt(hours);
@@ -62,7 +69,8 @@ public class clockTime {
                     }
                 }
             }
-            endTime = timeForHrsMin + ":" + digits[3] + digits[3];
+
+            endTime = timeForHrsMin + ":" + maxMins;
         }
         return endTime;
     }
